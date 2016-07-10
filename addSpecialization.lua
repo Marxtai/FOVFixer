@@ -128,5 +128,4 @@ function addSpecialization:add()
 	--make l10n global
 	g_i18n.globalI18N.texts["FOVFixer_UP"] = g_i18n:getText("FOVFixer_UP");
 	g_i18n.globalI18N.texts["FOVFixer_DOWN"] = g_i18n:getText("FOVFixer_DOWN");	
-	g_i18n.globalI18N.texts["FOVFixer_DEFAULT"] = g_i18n:getText("FOVFixer_DEFAULT");	
 end;

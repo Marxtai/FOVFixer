@@ -67,12 +67,11 @@ function FOVFixer:draw()
 		-- Add the inputBindings to the F1 help box (they need to be registered globally first, check addSpecialization.lua)
 		g_currentMission:addHelpButtonText(g_i18n:getText("FOVFixer_UP"), InputBinding.FOVFixer_UP);
 		g_currentMission:addHelpButtonText(g_i18n:getText("FOVFixer_DOWN"), InputBinding.FOVFixer_DOWN);
-		g_currentMission:addHelpButtonText(g_i18n:getText("FOVFixer_DEFAULT"), InputBinding.FOVFixer_DEFAULT);
 
-		local camera = self.cameras[self.camIndex];
-		local currentFOV = getFovy(camera.cameraNode);
+		local camera = self.cameras[self.camIndex];	
 
 		if camera ~= nil then
+			local currentFOV = getFovy(camera.cameraNode);
 			g_currentMission:addHelpButtonText("Field of view : " .. currentFOV, InputBinding.FOVFixer_DEFAULT);
 		end
 	end	
