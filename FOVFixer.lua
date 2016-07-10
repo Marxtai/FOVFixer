@@ -58,12 +58,10 @@ function FOVFixer:update(dt)
 			
 			if InputBinding.hasEvent(InputBinding.FOVFixer_UP) then				
 				self:changeFOV(1);
-				--FOVFixer:changeFOV(1);
 			end
 
 			if InputBinding.hasEvent(InputBinding.FOVFixer_DOWN) then	
 				self:changeFOV(-1);
-				--FOVFixer:changeFOV(-1);
 			end
 		end
 	end		
@@ -79,7 +77,8 @@ function FOVFixer:draw()
 
 		if camera ~= nil then
 			local currentFOV = getFovy(camera.cameraNode);
-			g_currentMission:addHelpButtonText("Field of view : " .. currentFOV, InputBinding.FOVFixer_DOWN);
+			g_currentMission:addExtraPrintText("Field of view : " .. currentFOV);
+
 		end
 	end	
 end;

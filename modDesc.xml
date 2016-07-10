@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="24">
     <author>Marxtai</author>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
 
     <title>
         <en>FOVFixer</en>
@@ -17,13 +17,11 @@
 
     <l10n> 
         <text name="FOVFixer_UP">
-            <en>Increase FOV</en>
-            <fr>Augmenter FOV</fr>
+            <en>Increase field of view</en>
         </text>
 
         <text name="FOVFixer_DOWN">
-            <en>Decrease FOV</en>
-            <fr>Diminuer FOV</fr>
+            <en>Decrease field of view</en>
         </text>
     </l10n>
 
