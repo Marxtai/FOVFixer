@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<modDesc descVersion="24">
+    <author>Marxtai</author>
+    <version>0.1.0</version>
+
+    <title>
+        <en>FOVFixer</en>
+    </title>
+    
+    <description>
+        <en><![CDATA[This mod lets you adjust the FOV for all cameras.]]></en>       
+    </description>
+
+    <iconFilename>icon.dds</iconFilename>
+
+    <multiplayer supported="true"/>
+
+    <l10n> 
+        <text name="FOVFixer_UP">
+            <en>Increase FOV</en>
+            <fr>Augmenter FOV</fr>
+        </text>
+
+        <text name="FOVFixer_DOWN">
+            <en>Decrease FOV</en>
+            <fr>Diminuer FOV</fr>
+        </text>
+
+        <text name="FOVFixer_DEFAULT">
+            <en>Reset FOV</en>
+            <fr>Reinitialiser FOV</fr>
+        </text>
+    </l10n>
+
+    <extraSourceFiles>
+        <sourceFile filename="ModsSettings.lua" />
+        <sourceFile filename="FOVFixerLoader.lua" />
+        <sourceFile filename="FOVFixer.lua" />
+        <sourceFile filename="addSpecialization.lua" />
+    </extraSourceFiles>
+
+    <inputBindings>
+        <input name="FOVFixer_UP" category="ONFOOT VEHICLE" key1="KEY_lalt KEY_f" key2="" button="" device="" mouse="" />
+        <input name="FOVFixer_DOWN" category="ONFOOT VEHICLE" key1="KEY_lalt KEY_r" key2="" button="" device="" mouse="" />
+        <input name="FOVFixer_DEFAULT" category="ONFOOT VEHICLE" key1="KEY_lalt KEY_d" key2="" button="" device="" mouse="" />
+    </inputBindings>
+</modDesc>
