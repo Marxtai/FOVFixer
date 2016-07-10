@@ -7,17 +7,21 @@ function FOVFixer.prerequisitesPresent(specializations)
 end;
 
 function FOVFixer:load(xmlFile)	
+	
+	self.changeFOV = SpecializationUtil.callSpecializationsFunction("changeFOV");
 
-	-- Go through each cameras for the vehicle, get the existing values from ModsSettings.
-	for i = 1, self.numCameras do			
-		local currentValue = g_currentMission.FOVFixer:getFOV(self.configFileName, i);	
+	if self.isClient then
+		-- Go through each cameras for the vehicle, get the existing values from ModsSettings.
+		for i = 1, self.numCameras do			
+			local currentValue = g_currentMission.FOVFixer:getFOV(self.configFileName, i);	
 
-		if currentValue ~= 0 then
-			setFovy(self.cameras[i].cameraNode, currentValue);
-		else
-			-- There's nothing for this camera currently, we might as well save the default. 
-			g_currentMission.FOVFixer:setFOV(self.configFileName, i, getFovy(self.cameras[i].cameraNode));
-		end
+			if currentValue ~= 0 then
+				setFovy(self.cameras[i].cameraNode, currentValue);
+			else
+				-- There's nothing for this camera currently, we might as well save the default. 
+				g_currentMission.FOVFixer:setFOV(self.configFileName, i, getFovy(self.cameras[i].cameraNode));
+			end
+		end	
 	end	
 end;
 
@@ -39,24 +43,27 @@ end;
 function FOVFixer:updateTick(dt)
 end;
 
+function FOVFixer:changeFOV(update)
+
+	local cameraId = self.cameras[self.camIndex].cameraNode;
+	local newFOV = getFovy(cameraId) + update;
+
+	g_currentMission.FOVFixer:setFOV(self.configFileName, self.camIndex, newFOV);
+	setFovy(cameraId, newFOV);
+end
+
 function FOVFixer:update(dt)
 	if self:getIsActive() then	
-		if self:getIsActiveForInput() then	
-
-			local camera = self.cameras[self.camIndex];
-			local cameraId = camera.cameraNode;
-			local currentFOV = getFovy(cameraId);	
+		if self:getIsActiveForInput() then			
 			
-			if InputBinding.hasEvent(InputBinding.FOVFixer_UP) then
-				local newFOV = currentFOV + 1;
-				g_currentMission.FOVFixer:setFOV(self.configFileName, self.camIndex, newFOV);
-				setFovy(cameraId, newFOV);
+			if InputBinding.hasEvent(InputBinding.FOVFixer_UP) then				
+				self:changeFOV(1);
+				--FOVFixer:changeFOV(1);
 			end
 
-			if InputBinding.hasEvent(InputBinding.FOVFixer_DOWN) then
-				local newFOV = currentFOV - 1;
-				g_currentMission.FOVFixer:setFOV(self.configFileName, self.camIndex, newFOV);
-				setFovy(cameraId, newFOV);
+			if InputBinding.hasEvent(InputBinding.FOVFixer_DOWN) then	
+				self:changeFOV(-1);
+				--FOVFixer:changeFOV(-1);
 			end
 		end
 	end		
@@ -72,7 +79,7 @@ function FOVFixer:draw()
 
 		if camera ~= nil then
 			local currentFOV = getFovy(camera.cameraNode);
-			g_currentMission:addHelpButtonText("Field of view : " .. currentFOV, InputBinding.FOVFixer_DEFAULT);
+			g_currentMission:addHelpButtonText("Field of view : " .. currentFOV, InputBinding.FOVFixer_DOWN);
 		end
 	end	
 end;

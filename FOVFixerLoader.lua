@@ -43,7 +43,7 @@ function FOVFixerLoader:getFOV(filename, camIndex)
 
 		existingValue = ModsSettings.getFloatLocal(modName, keyName, "current", 0);
 
-		-- We got a non-zero value from ModsSettings.XML, add it to our table.
+		-- If we got a non-zero value from ModsSettings.XML, add it to our table.
 		if existingValue ~= 0 then
 
 			if self.ourFovDataTable[filename] == nil then
@@ -89,14 +89,8 @@ function FOVFixerLoader:getModName(filename)
 	
 	-- Split it at the /
 	local fileNameParts = Utils.splitString("/", fileName);
-	local totalEntries = 0;
 
-	for key, index in pairs(fileNameParts) do
-		totalEntries = totalEntries + 1;
-	end	
-
-	-- Return the top value of the array, only the filename.
-	return fileNameParts[totalEntries];
+	return fileNameParts[#fileNameParts];
 end
 
 -- When the game is saved, we want to save data to ModsSettings.XML as well
